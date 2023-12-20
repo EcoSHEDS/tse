@@ -1,30 +1,26 @@
 <template>
   <v-app>
+    <UsgsHeader></UsgsHeader>
 
-    <v-app-bar app clipped-left dark>
+    <v-app-bar app clipped-left dark style="margin-top:68px">
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="headline">
-        <span>SHEDS</span>
-        <span class="font-weight-light px-2">|</span>
         <span class="font-weight-light">Time Series Explorer</span>
         <!-- <span class="font-weight-light px-2">|</span>
         <span class="text-uppercase overline ml-3">Beta Version</span> -->
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn class="mr-6" text medium @click="dialogs.showIntro = true">
-        welcome
-      </v-btn>
-
-      <v-btn text medium href="https://ecosheds.org">
-        <v-icon small left>mdi-home</v-icon> SHEDS
+      <v-btn text medium @click="dialogs.showIntro = true">
+        <v-icon small left>mdi-home</v-icon> Welcome
       </v-btn>
     </v-app-bar>
 
-    <v-content>
+    <v-main>
       <v-navigation-drawer
         v-model="drawer"
         app
         clipped
+        :style="{ 'margin-top': $vuetify.breakpoint.mobile ? '128px' : '64px' }"
       >
         <v-list
           class="grey lighten-4 pa-4 pl-2"
@@ -378,7 +374,7 @@
             <hr>
             <p></p>
             <v-card-text>
-              Built by <a href="https://www.usgs.gov/staff-profiles/benjamin-h-letcher?qt-staff_profile_science_products=0#qt-staff_profile_science_products" target="_blank">Benjamin Letcher, PhD (USGS)</a>
+              Built by <a href="https://www.usgs.gov/staff-profiles/benjamin-h-letcher" target="_blank">Benjamin Letcher, PhD (USGS)</a>
               and <a href="https://walkerenvres.com" target="_blank">Jeffrey D Walker, PhD (Walker Environmental Research)</a>
             </v-card-text>
           </v-card-text>
@@ -414,7 +410,8 @@
         </v-row>
       </v-container>
 
-    </v-content>
+    </v-main>
+    <UsgsFooter style="z-index:1000"></UsgsFooter>
   </v-app>
 </template>
 
@@ -425,6 +422,8 @@ import BrushChart from '@/components/BrushChart'
 import RectChart from '@/components/RectChart'
 import AllpointsChart from '@/components/AllpointsChart'
 import MeansChart from '@/components/MeansChart'
+import UsgsHeader from '@/components/usgs/UsgsHeader'
+import UsgsFooter from '@/components/usgs/UsgsFooter'
 
 const formatters = {
   mdy: d3.timeFormat('%B %d, %Y'),
@@ -443,7 +442,9 @@ export default {
     TimeseriesChart,
     AllpointsChart,
     BrushChart,
-    RectChart
+    RectChart,
+    UsgsHeader,
+    UsgsFooter
   },
   data: () => ({
     timeSeriesWidth: 960,

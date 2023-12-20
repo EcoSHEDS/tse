@@ -2,6 +2,5 @@ module.exports = {
   'transpileDependencies': [
     'vuetify'
   ],
-  // publicPath: process.env.NODE_ENV === 'production' ? '/dev/ctse/' : '/'
-  publicPath: '/'
+  publicPath: process.env.NODE_ENV === 'production' ? '/apps/ecosheds/tse' : '/'
 }
