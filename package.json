@@ -5,7 +5,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "stage": "vue-cli-service build --mode staging",
+    "deploy:stage": "npm run stage && aws s3 sync dist/ s3://usgs-chs-conte-dev-ecosheds-website/tse/",
+    "deploy": "npm run build && aws s3 sync dist/ s3://usgs-chs-conte-prod-ecosheds-website/apps/ecosheds/tse/"
   },
   "dependencies": {
     "core-js": "^2.6.11",
